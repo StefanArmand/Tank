@@ -77,9 +77,9 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 # Starter Content
-Tank/Content/StarterContent/Textures
-Tank/Content/StarterContent/HDRI
-Tank/Intermediate/
-Tank/Binaries/
-Tank/Saved/
+*/Content/StarterContent/Textures
+*/Content/StarterContent/HDRI
+*/Intermediate/
+*/Binaries/
+*/Saved/
 
