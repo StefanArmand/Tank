@@ -77,9 +77,17 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 # Starter Content
-*/Content/StarterContent/Textures
-*/Content/StarterContent/HDRI
+*/StarterContent/Textures
+*/StarterContent/HDRI
+*/StarterContent/Architecture
+*/StarterContent/Audio
+*/StarterContent/Materials
+*/StarterContent/Particles
+*/StarterContent/Shapes
+*/StarterContent/Props
 */Intermediate/
 */Binaries/
 */Saved/
 
+#ignore umap because of size
+*.umap
