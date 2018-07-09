@@ -18,5 +18,10 @@ class TANK_API ATankPlayerController : public APlayerController
 public:
 	ATankPawn* GetControlledTank() const;
 	
+	virtual void Tick(float DeltaTime) override;
+
 	void BeginPlay() override;
+
+	//Start the tank to move the barrel towards the target
+	void AimTowardsCrosshair();
 };
