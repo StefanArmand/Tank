@@ -21,7 +21,7 @@ public:
 	void BeginPlay() override;
 private:
 	UPROPERTY(EditAnywhere)
-		float Reach = 10000.f;
+	float LineTraceRange = 1000000.f;
 
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 
@@ -30,7 +30,9 @@ private:
 	//Start the tank to move the barrel towards the target
 	void AimTowardsCrosshair();
 	
-	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
+
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
