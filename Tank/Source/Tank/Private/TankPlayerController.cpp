@@ -26,23 +26,30 @@ ATankPawn* ATankPlayerController::GetControlledTank() const {
 	return Cast<ATankPawn>(GetPawn());
 }
 
-FVector ATankPlayerController::GetReachLineStart() {
-	FVector PlayerViewpointLocation;
-	FRotator PlayerViewpointRotation;
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewpointLocation, OUT PlayerViewpointRotation);
+void ATankPlayerController::AimTowardsCrosshair() {
+	if (!GetControlledTank()) { return; }
 
-	return PlayerViewpointLocation;
-}
-
-FVector ATankPlayerController::GetReachLineEnd() {
-	FVector PlayerViewpointLocation;
-	FRotator PlayerViewpointRotation;
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewpointLocation, OUT PlayerViewpointRotation);
-
-	return PlayerViewpointLocation + PlayerViewpointRotation.Vector() * Reach;
+	FVector HitLocation;
+	if (GetSightRayHitLocation(HitLocation)) {
+		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+	}
+	// Get world location of linetrace through crosshair
+	// if it hits the landscape
+		//tell controllet tank to aim at this point
 }
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const {
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
+	//UE_LOG(LogTemp, Warning, TEXT("Screen Location: %s"), *ScreenLocation.ToString());
+
+	FVector LookDirection;
+	if (GetLookDirection(ScreenLocation, LookDirection)) {
+		UE_LOG(LogTemp, Warning, TEXT("Screen Location: %s"), *LookDirection.ToString());
+	}
+	
 	/*FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
 	FHitResult HitResult;
 
@@ -53,14 +60,8 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	return true;
 }
 
-void ATankPlayerController::AimTowardsCrosshair() {
-	if (!GetControlledTank()) { return; }
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const {
+	FVector CameraWorldLocation; // To be discarded
 
-	FVector HitLocation;
-	if (GetSightRayHitLocation(HitLocation)) {
-		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
-	}
-	// Get world location of linetrace through crosshair
-	// if it hits the landscape
-		//tell controllet tank to aim at this point
+	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldLocation, LookDirection);
 }

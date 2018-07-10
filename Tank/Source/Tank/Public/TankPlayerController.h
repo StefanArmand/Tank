@@ -16,21 +16,26 @@ class TANK_API ATankPlayerController : public APlayerController
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(EditAnywhere)
-	float Reach = 10000.f;
-
-	ATankPawn* GetControlledTank() const;
-	
 	virtual void Tick(float DeltaTime) override;
 
 	void BeginPlay() override;
+private:
+	UPROPERTY(EditAnywhere)
+		float Reach = 10000.f;
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	ATankPawn* GetControlledTank() const;
 
 	//Start the tank to move the barrel towards the target
 	void AimTowardsCrosshair();
 	
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 
-	FVector GetReachLineStart();
+	UPROPERTY(EditAnywhere)
+	float CrossHairXLocation = 0.5;
 
-	FVector GetReachLineEnd();
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.33;
+
 };
