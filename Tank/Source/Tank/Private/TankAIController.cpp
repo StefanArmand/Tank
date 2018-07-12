@@ -1,5 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "TankPawn.h"
+#include "Engine/World.h"
 #include "TankAIController.h"
 
 ATankPawn* ATankAIController::GetControlledTank() const {

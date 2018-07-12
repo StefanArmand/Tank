@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "TankPawn.generated.h"
 
-class UTankBarrel; // forward declaration
+// forward declaration
+class UTankBarrel; 
+class UTankAimingComponent;
+
 
 UCLASS()
 class TANK_API ATankPawn : public APawn
@@ -35,5 +37,5 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000.f; //TODO Find Sensible Default
+	float LaunchSpeed = 1000000.f; //TODO Find Sensible Default
 };
