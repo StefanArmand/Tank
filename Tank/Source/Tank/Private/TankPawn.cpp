@@ -37,3 +37,7 @@ void ATankPawn::SetBarrelReference(UTankBarrel* BarrelToSet) {
 void ATankPawn::SetTurretReference(UTankTurret* TurretToSet) {
 	TankAimingComponent->SetTurretReference(TurretToSet);
 }
+
+void ATankPawn::Fire() {
+	UE_LOG(LogTemp, Warning, TEXT("Firing"));
+}
