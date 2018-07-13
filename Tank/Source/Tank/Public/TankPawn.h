@@ -10,7 +10,7 @@
 class UTankBarrel; 
 class UTankTurret;
 class UTankAimingComponent;
-
+class AProjectile;
 
 UCLASS()
 class TANK_API ATankPawn : public APawn
@@ -45,5 +45,11 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 7000.f; //TODO Find Sensible Default
+	float LaunchSpeed = 7000.f;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	//local barrel reference for spawning projectile
+	UTankBarrel* Barrel = nullptr;
 };
