@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
+
+
 class ATankPawn;
 
 UCLASS()
@@ -17,13 +19,17 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void BeginPlay() override;
+
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATankPawn* GetControlledTank() const;
+
 private:
+
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.f;
 
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
-
-	ATankPawn* GetControlledTank() const;
 
 	//Start the tank to move the barrel towards the target
 	void AimTowardsCrosshair();
