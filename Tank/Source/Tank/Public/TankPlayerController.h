@@ -7,7 +7,7 @@
 #include "TankPlayerController.generated.h"
 
 
-
+class UTankAimingComponent;
 class ATankPawn;
 
 UCLASS()
@@ -22,7 +22,10 @@ public:
 
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-		ATankPawn* GetControlledTank() const;
+	ATankPawn* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
 
