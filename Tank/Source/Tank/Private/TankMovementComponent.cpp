@@ -8,8 +8,6 @@ void UTankMovementComponent::Initialise(UTankTrack* LeftTrackToSet, UTankTrack* 
 	RightTrack = RightTrackToSet;
 }
 
-
-
 void UTankMovementComponent::IntendMoveForward(float Throw) {
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
@@ -28,5 +26,7 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	// UE_LOG(LogTemp, Warning, TEXT("%s is moving at %s"), *Name, *AIForwardIntention);
 
 	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
 	IntendMoveForward(ForwardThrow);
+	IntendTurnRight(RightThrow);
 }
