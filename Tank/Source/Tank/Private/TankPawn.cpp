@@ -6,7 +6,6 @@
 #include "TankTurret.h"
 #include "Projectile.h"
 #include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 
 
 // Sets default values
@@ -21,7 +20,7 @@ void ATankPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UE_LOG(LogTemp, Warning, TEXT("Tank started"));
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATankPawn::AimAt(FVector HitLocation) {
