@@ -8,7 +8,6 @@
 
 
 class UTankAimingComponent;
-class ATankPawn;
 
 UCLASS()
 class TANK_API ATankPlayerController : public APlayerController
@@ -21,8 +20,6 @@ public:
 	void BeginPlay() override;
 
 protected:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATankPawn* GetControlledTank() const;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);

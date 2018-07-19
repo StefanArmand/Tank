@@ -6,8 +6,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATankPawn;
-
 UCLASS()
 class TANK_API ATankAIController : public AAIController
 {

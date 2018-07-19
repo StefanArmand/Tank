@@ -9,7 +9,6 @@
 // forward declaration
 class UTankBarrel; 
 class UTankTurret;
-class UTankAimingComponent;
 class AProjectile;
 
 UCLASS()
@@ -21,21 +20,16 @@ public:
 	// Sets default values for this pawn's properties
 	ATankPawn();
 
-	void AimAt(FVector HitLocation);
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Fire();
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void SetReferences(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
-
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Fire();
 
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:	
 
