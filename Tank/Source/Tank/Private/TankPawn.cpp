@@ -25,7 +25,7 @@ void ATankPawn::BeginPlay()
 }
 
 void ATankPawn::AimAt(FVector HitLocation) {
-	if (!TankAimingComponent) { return; }
+	if (!ensure(TankAimingComponent)) { return; }
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
