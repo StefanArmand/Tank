@@ -50,12 +50,14 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+	bool IsBarrelMoving();
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Aiming;
+	EFiringState FiringState = EFiringState::Reload;
 
 	
 private:
@@ -72,4 +74,6 @@ private:
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	double LastFireTime = 0;
+
+	FVector AimDirection;
 };
