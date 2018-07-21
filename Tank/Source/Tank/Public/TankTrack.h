@@ -25,6 +25,13 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float TrackMaxDrivingForce = 400000;
 
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+
 private:
 	UTankTrack();
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
