@@ -101,7 +101,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) {
 }
 
 void UTankAimingComponent::Fire() {
-	if (FiringState!=EFiringState::Reload) {
+	if (FiringState == EFiringState::Aiming) {
 		if (!ensure(Barrel)) { return; }
 		if (!ensure(ProjectileBlueprint)) { return; }
 		// Spawn a projectile at the socket location on the barrel
@@ -109,4 +109,8 @@ void UTankAimingComponent::Fire() {
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = FPlatformTime::Seconds();
 	}
+}
+
+EFiringState UTankAimingComponent::GetFiringState() const{
+	return FiringState;
 }
