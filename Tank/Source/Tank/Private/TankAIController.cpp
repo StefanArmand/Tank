@@ -22,7 +22,7 @@ void ATankAIController::Tick(float DeltaTime)
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	AimingComponent->AimAt(PlayerPawn->GetActorLocation());
 
-	if (AimingComponent->GetFiringState() == EFiringState::Locked) {
+	if (AimingComponent->GetFiringState() == EFiringState::Aiming) {
 		AimingComponent->Fire(); //TODO limit firing rate
 	}
 	

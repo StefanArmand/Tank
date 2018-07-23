@@ -16,6 +16,7 @@ enum class EFiringState : uint8
 	Reload,
 	Locked,
 	Aiming,
+	OutOfAmmo
 };
 
 // forward declaration
@@ -48,9 +49,10 @@ public:
 
 	void AimAt(FVector HitLocation);
 
-	bool IsBarrelMoving();
-
 	EFiringState GetFiringState() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	int GetRoundsLeft() const;
 
 protected:
 	// Called when the game starts
@@ -64,6 +66,8 @@ private:
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
+	bool IsBarrelMoving();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 7000.f;
 
@@ -76,4 +80,6 @@ private:
 	double LastFireTime = 0;
 
 	FVector AimDirection;
+
+	int RoundsLeft = 3;
 };
