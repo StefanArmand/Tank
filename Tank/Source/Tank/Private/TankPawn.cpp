@@ -11,6 +11,10 @@ ATankPawn::ATankPawn()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void ATankPawn::BeginPlay() {
+	Super::BeginPlay();
+	CurrentHealth = StartingHealth;
+}
 
 float ATankPawn::TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController * EventInstigator, AActor * DamageCauser) {
 
@@ -19,7 +23,7 @@ float ATankPawn::TakeDamage(float DamageAmount, struct FDamageEvent const & Dama
 
 	CurrentHealth -= DamageToApply;
 	if (CurrentHealth <= 0) {
-		UE_LOG(LogTemp, Warning, TEXT("Tank died"));
+		OnDeath.Broadcast();
 	}
 
 	return DamageToApply;

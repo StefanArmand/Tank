@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+#include "GameFramework/Pawn.h"
 #include "TankAIController.generated.h"
 
 UCLASS()
@@ -23,4 +24,9 @@ private:
 	//How close can the AI tank get to the player
 	UPROPERTY(EditDefaultsOnly)
 	float AcceptanceRadius = 3000;
+
+	virtual void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 };
